@@ -6,9 +6,9 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Activity
-from members.models import Profile  # Import Profile from the members app
+from members_app.models import Profile  # Import Profile from the members app
 
-@login_required  # Re-enable the decorator
+#@login_required  # Re-enable the decorator
 def activities_list(request):
     activities = Activity.objects.all().order_by('-date')  # Fetch activities sorted by date
     

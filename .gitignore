@@ -25,3 +25,4 @@ logs/
 # Ignore static and media files (optional)
 staticfiles/
 media/
+db.sqlite3

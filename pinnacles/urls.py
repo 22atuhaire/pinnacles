@@ -27,9 +27,9 @@ urlpatterns = [
     path('login/', include('auth_app.urls')),
     path('logout/', include('auth_app.urls')),
     path('register/', include('auth_app.urls')),
-    #path('news/', include('post_app.urls')),
-    #path('activities/', include('activities.urls')),
-    path('members/', include('members.urls')),
+    path('news/', include('posts_app.urls')),
+    path('activities/', include('activities_app.urls')),
+    path('members/', include('members_app.urls')),
     path('about_us/', include('about_app.urls')),
 ] 
 
