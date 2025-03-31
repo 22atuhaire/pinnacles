@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'members_app'
+app_name = 'members'
 # This is the URL configuration for the members_app.
 urlpatterns = [
     path('', views.member_list_view, name='member_list'),
