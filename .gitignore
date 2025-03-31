@@ -23,6 +23,6 @@ logs/
 *.err
 
 # Ignore static and media files (optional)
-staticfiles/
-media/
+#staticfiles/
+#media/
 db.sqlite3
