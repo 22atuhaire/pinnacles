@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'posts_app',
     'core_app',
     'auth_app',
-    'donations_app',
+    'donation_app',
 ]
 
 MIDDLEWARE = [

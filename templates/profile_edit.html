@@ -1,0 +1,62 @@
+{% extends 'base.html' %}  
+{% load static %}
+
+{% block content %}
+    <h1>Update <span class="username">{{ user.username }}</span>'s profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="full_name">Full Name:</label>
+            <input type="text" name="full_name" id="full_name" value="{{ profile.full_name }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="bio">Bio:</label>
+            <textarea name="bio" id="bio" class="form-control">{{ profile.bio }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="current_employer">Current Employer:</label>
+            <input type="text" name="current_employer" id="current_employer" value="{{ profile.current_employer }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="graduation_year">Graduation Year:</label>
+            <input type="number" name="graduation_year" id="graduation_year" value="{{ profile.graduation_year }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="profile_picture">Profile Picture:</label>
+            <div>
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" id="current-profile-picture" alt="Current profile picture">
+                {% else %}
+                    <img src="{% static 'images/Avatar.jpg' %}" id="current-profile-picture" alt="Default profile picture">
+                {% endif %}
+            </div>
+            <input type="file" name="profile_picture" id="profile_picture" class="form-control" accept="image/*">
+            <div id="preview-container">
+                <p>New Profile Picture:</p>
+                <img id="preview-image" alt="New prof-image">
+            </div>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'members:profile' user_id=request.user.id %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('profile_picture').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const previewContainer = document.getElementById('preview-container');
+            const previewImage = document.getElementById('preview-image');
+            const currentImage = document.getElementById('current-profile-picture');
+
+            if (file) {
+                previewContainer.style.display = 'block';
+                currentImage.style.display = 'none';
+                previewImage.src = URL.createObjectURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+                currentImage.style.display = 'block';
+            }
+        });
+    </script>
+{% endblock %}

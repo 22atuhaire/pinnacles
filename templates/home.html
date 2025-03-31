@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Connect</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'css/core.css' %}?v=1.2">
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="{% static 'images/logo.png' %}" alt="Alumni Connect" class="logo">
+                <span>Alumni Connect</span>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+                <a href="{% url 'register' %}" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+    <div class="home-container">
+        <div class="main-content">
+            <section class="hero-section">
+                <h1>Alumni Connect</h1>
+                <img src="{% static 'images/logo.png' %}" alt="Alumni Connect Logo" class="logo">
+                <p class="tagline">Connecting UTAMU Alumni for Lifelong Growth and Impact</p>
+            </section>
+            <section class="vision-mission">
+                <div class="content-block">
+                    <h3>Our Vision</h3>
+                    <p>To foster lifelong connections among alumni, support professional and personal growth, and contribute to the development of our alma mater and community through networking, mentorship, and shared experiences.</p>
+                </div>
+                <div class="content-block">
+                    <h3>Our Mission</h3>
+                    <p>To build a vibrant alumni community that enhances opportunities for collaboration, knowledge sharing, and social impact while preserving the legacy and values of our institution.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-link');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            if (links) {
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
