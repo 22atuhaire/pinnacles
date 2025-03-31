@@ -1,0 +1,27 @@
+.env
+venv/
+myenv/
+*.venv
+
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+
+# Ignore Django migrations cache
+**/migrations/**/__pycache__/
+migrations/
+
+# Ignore logs
+logs/
+*.log
+*.out
+*.err
+
+# Ignore static and media files (optional)
+staticfiles/
+media/
