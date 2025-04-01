@@ -9,7 +9,7 @@ def about_us(request):
     members = ExecutiveMember.objects.all()
     constitution = Constitution.objects.first()
 
-    return render(request, 'about/about_us.html', {
+    return render(request, 'about_us.html', {
         'history': history,
         'members': members,
         'constitution': constitution

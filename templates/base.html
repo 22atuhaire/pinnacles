@@ -5,7 +5,7 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alumni Connect</title>
+    <title>Kasenyi Pinnacles</title>
     <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.1" /> <!-- Added version to bust cache -->
   </head>
@@ -15,7 +15,7 @@
         <div class="container">
           <div class="nav-brand">
             <img src="{% static 'images/logo.png' %}" alt="Alumni Connect" class="logo" />
-            <span>Alumni Connect</span>
+            <span>Kasenyi Pinnacles</span>
           </div>
           <button class="hamburger" aria-label="Toggle menu">
             <span></span>
@@ -26,6 +26,7 @@
             <a href="{% url 'members:member_list' %}" class="nav-link">Members</a>
             <a href="{% url 'news:news_list' %}" class="nav-link">News</a>
             <a href="{% url 'activities:activities' %}" class="nav-link">Activities</a>
+            <a href="{% url 'about:about_us'%}" class="nav-link">About Us</a>
             <a href="{% url 'logout' %}" class="nav-link">Logout</a>
             <a href="{% url 'members:profile_edit' %}" class="nav-link">
               {% if current_user_profile.profile_picture %}
