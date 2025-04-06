@@ -3,6 +3,11 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f7fa;
     color: #333;
+    background-image:url("../image/school2.jpg");
+    background-attachment: fixed;
+    background-repeat: repeat;
+    background-size: contain;
+    background-position: center;  
 }
 
 /* Navigation Bar */
@@ -63,7 +68,7 @@ nav .container {
 /* Hamburger menu styling */
 .hamburger {
     display: none;
-    background: none;
+    background-color: #003366;
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -82,19 +87,18 @@ nav .container {
 
 /* Mobile responsive for nav */
 @media (max-width: 768px) {
-    .hamburger {
+    /* .hamburger {
         display: block !important;
-    }
+    } */
 
     .nav-links {
-        display: none !important;
         position: fixed !important;
         top: 60px;
         right: 0;
         width: 50% !important;
         height: auto;
         min-height: 150px;
-        background-color: #333;
+        /* background-color: #003366;  */
         flex-direction: column;
         padding: 20px;
         z-index: 1000;
@@ -207,6 +211,46 @@ nav .container {
     color: #555;
     margin: 0;
 }
+
+.auth-links {
+    display: flex;
+    justify-content: center; /* Centers the links horizontally */
+    gap: 20px; /* Adds spacing between the links */
+    font-size: 1.5rem; /* Increases the font size */
+    font-weight: bold; /* Makes the text bold */
+    text-transform: uppercase; /* Converts text to uppercase */
+    /* margin-top: 20px; Adds space from the top */
+    margin-top: -60px; /* Moves links upwards */
+    position: relative;
+    position: absolute;  
+    bottom: 0%; /* Moves links upwards */
+    left: 50%;
+    transform: translateX(-50%); /* Centers them properly */
+}
+.auth-links div{
+    padding: 10px;
+    box-shadow: 0,0,5px ,rgba(0, 0, 0, 0.1);
+    background-color: #fffff0;
+    border-radius: 5px;
+}
+
+.auth-links a {
+    text-decoration: none; /* Removes underline */
+    color: #000;
+    /* color: #4b0082; Changes color (adjust as needed) */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+    padding: 8px;
+}
+.auth-links div:hover{
+    transform: scale(1.2);
+    transition: color 0.5s ease-in-out
+}
+.auth-links a:hover {
+    color: mediumblue; /* Change color on hover */
+    transition: color 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
 
 /* Responsive Design for hero and vision-mission sections */
 @media (max-width: 768px) {

@@ -10,21 +10,18 @@
     <link rel="stylesheet" href="{% static 'css/core.css' %}?v=1.2">
 </head>
 <body>
-    <nav role="navigation" aria-label="Main navigation">
+    <nav style="background-color: #003366; " role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-brand">
                 <img src="{% static 'images/logo.png' %}" alt="Kasenyi Pinnacles" class="logo">
                 <span>Kasenyi Pinnacles</span>
             </div>
-            <button class="hamburger" aria-label="Toggle menu">
+            {% comment %} <button class="hamburger" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <div class="nav-links">
-                <a href="{% url 'login' %}" class="nav-link">Login</a>
-                <a href="{% url 'register' %}" class="nav-link">Register</a>
-            </div>
+            </button> {% endcomment %}
+            
         </div>
     </nav>
     <div class="home-container">
@@ -34,17 +31,17 @@
                 <img src="{% static 'images/logo.png' %}" alt="Kasenyi Pinnacles Logo" class="logo">
                 <p class="tagline">Marching to the peak</p>
             </section>
-            <section class="vision-mission">
-                <div class="content-block">
-                    <h3>Our Vision</h3>
-                    <p>Fostering a community of alumni who supports one another, serve their alma mater, and give back to their community.</p>
-                </div>
-                <div class="content-block">
-                    <h3>Our Mission</h3>
-                    <p>To build a vibrant alumni community that enhances opportunities for collaboration, knowledge sharing, and social impact while preserving the legacy and values of our institution.</p>
-                </div>
-            </section>
+            
         </div>
+    </div>
+    <div class="auth-links">
+        <div>
+            <a href="{% url 'login' %}" >Login</a>
+        </div>
+        <div>
+            <a href="{% url 'register' %}">Register</a>  
+        </div>
+        
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
