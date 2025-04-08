@@ -13,12 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y1279l)7tvh-w@)$=jir*s1hhc5%-!hgx4uwlj_iz@@%9cz$9f'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# 'django-insecure-y1279l)7tvh-w@)$=jir*s1hhc5%-!hgx4uwlj_iz@@%9cz$9f'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
 
 # Application definition
@@ -90,7 +89,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES['default'] = dj_database_url.parse("postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 #postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database
 # Password validation
