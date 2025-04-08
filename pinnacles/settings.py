@@ -1,9 +1,8 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import dj_database_url
 from django.conf import settings
-
+import dj_database_url
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,8 +90,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default'] = dj_database_url.parse("postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database")
 
-
+#postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
