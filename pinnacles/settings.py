@@ -17,7 +17,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # 'django-insecure-y1279l)7tvh-w@)$=jir*s1hhc5%-!hgx4uwlj_iz@@%9cz$9f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = ['pinnacles.onrender.com']
+
 
 
 # Application definition
