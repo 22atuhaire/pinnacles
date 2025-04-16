@@ -16,6 +16,8 @@ urlpatterns = [
     path('activities/', include('activities_app.urls')),
     path('members/', include('members_app.urls')),
     path('about_us/', include('about_app.urls')),
+    path('jobs/', include('jobs.urls')),
+
 ] 
 
 if settings.DEBUG:

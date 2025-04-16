@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'core_app',
     'auth_app',
     'donation_app',
+    'jobs',
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -134,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+DEBUG = True
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type

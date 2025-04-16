@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Job Opportunities{% endblock %}
+{% block content %}
+    <h1>Job Opportunities</h1>
+    <ul>
+        {% for job in jobs %}
+            <li>
+                <a href="{% url 'jobs:job_detail' job.pk %}">{{ job.title }}</a>
+                - {{ job.company }} ({{ job.location }}) — Deadline: {{ job.application_deadline }}
+            </li>
+        {% empty %}
+            <li>No job openings available right now.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
