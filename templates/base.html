@@ -27,8 +27,8 @@
             <a href="{% url 'news:news_list' %}" class="nav-link">News</a>
             <a href="{% url 'activities:activities' %}" class="nav-link">Activities</a>
             <a href="{% url 'about:about_us'%}" class="nav-link">About Us</a>
-            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
             <a href="{% url 'jobs:job_list' %}" class="nav-link">Jobs</a>
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
             <a href="{% url 'members:profile_edit' %}" class="nav-link">
               {% if current_user_profile.profile_picture %}
                 <img src="{{ current_user_profile.profile_picture.url }}" class="profile-pic" alt="Your profile" onerror="this.onerror=null;src='/static/images/Avatar.jpg'" />

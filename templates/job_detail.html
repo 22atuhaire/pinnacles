@@ -1,16 +1,25 @@
+{% extends "base.html" %}
 
-{%extends "base.html"%}
 {% block content %}
-    <h2>{{ job.title }} at {{ job.company }}</h2>
-    <p><strong>Location:</strong> {{ job.location }}</p>
-    <p><strong>Deadline:</strong> {{ job.application_deadline }}</p>
-    <p>{{ job.description }}</p>
+
+<div class="job-detail-container">
+    <div class="job-title">{{ job.title }} at {{ job.company }}</div>
+    
+    <div class="job-meta">
+        <p><strong>📍 Location:</strong> {{ job.location }}</p>
+        <p><strong>🗓️ Deadline:</strong> {{ job.application_deadline }}</p>
+    </div>
+
+    <div class="job-description">
+        {{ job.description }}
+    </div>
 
     {% if job.job_file %}
-        <p><a href="{{ job.job_file.url }}">Download Job Description</a></p>
+        <p><a href="{{ job.job_file.url }}">📄 Download Job Description</a></p>
     {% endif %}
 
     {% if job.application_link %}
-        <p><a href="{{ job.application_link }}" target="_blank">Apply Now</a></p>
+        <p><a href="{{ job.application_link }}" target="_blank">🚀 Apply Now</a></p>
     {% endif %}
-{%endblock%}
+</div>
+{% endblock %}
