@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Scholarships{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'jobs/scholarships.css' %}">
+
+<div class="scholarship-container">
+    <h2>Available Scholarships</h2>
+
+    {% if scholarships %}
+        {% for scholarship in scholarships %}
+            <div class="scholarship-card">
+                <h3>{{ scholarship.title }}</h3>
+                <p><strong>Provider:</strong> {{ scholarship.provider }}</p>
+                <p><strong>Deadline:</strong> {{ scholarship.deadline }}</p>
+                <p>{{ scholarship.description }}</p>
+                {% if scholarship.application_link %}
+                    <a href="{{ scholarship.application_link }}" target="_blank">Apply Now</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p style="text-align: center;">No scholarships available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

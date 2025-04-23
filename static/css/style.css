@@ -914,6 +914,21 @@ a:hover {
 .view-link:hover {
     text-decoration: underline;
 }
+
+.scholarship-link {
+    background-color: #007fff;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.scholarship-link:hover {
+    background-color: #005fcc;
+}
+
 /* job details styles */
 .job-detail-container {
     max-width: 800px;
@@ -957,4 +972,45 @@ a:hover {
 
 .job-detail-container a:hover {
     background-color: #007BFF;
+}
+
+/* scholarship styles */
+.scholarship-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scholarship-container h2 {
+    color: #004080;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.scholarship-card {
+    border-left: 5px solid skyblue;
+    padding: 1rem;
+    background: #f0f8ff;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.scholarship-card h3 {
+    margin-bottom: 0.5rem;
+    color: #004080;
+}
+
+.scholarship-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: white;
+    background-color: #007fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.scholarship-card a:hover {
+    background-color: #005fcc;
 }
