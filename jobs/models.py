@@ -12,8 +12,7 @@ class Job(models.Model):
     posted_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title} at {self.company}"
-
+        return f"{self.title} at {self.company} "
 class Scholarship(models.Model):
     title = models.CharField(max_length=200)
     provider = models.CharField(max_length=200)
