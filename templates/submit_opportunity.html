@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Submit Opportunity{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Submit an Opportunity for Fellow Members</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="scholarship-link">Submit</button>
+    </form>
+</div>
+<p>Lets build a rich community by holding each other</p>
+
+{% endblock %}
+
+<style>
+    .form-container {
+        background: #f9f9f9;
+        padding: 30px;
+        border-radius: 12px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);
+    }
+    
+    h2 {
+        color: #007bff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    form p {
+        margin-bottom: 15px;
+    }
+
+    
+    button:hover {
+        background-color: #3399ff;
+    }
+    
+    p:last-of-type {
+        text-align: center;
+        margin-top: 20px;
+        color: #444;
+        font-style: italic;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+        .form-container {
+            padding: 20px 15px;
+        }
+    
+        button {
+            width: 100%;
+            padding: 12px;
+        }
+    
+        h2 {
+            font-size: 1.4rem;
+        }
+    }
+    </style>
+    
