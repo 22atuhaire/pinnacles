@@ -4,6 +4,7 @@ from .models import MemberOpportunity
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Job
 from .models import Scholarship
+from django.contrib import messages
 
 def job_list(request):
     jobs = Job.objects.order_by('-posted_on')
@@ -26,6 +27,7 @@ def submit_opportunity(request):
             opportunity = form.save(commit=False)
             opportunity.created_by = request.user
             opportunity.save()
+            messages.success(request, 'Your opportunity has been submitted successfully and is pending for review.')
             return redirect('jobs:member_opportunities')
     else:
         form = MemberOpportunityForm()

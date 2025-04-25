@@ -2,6 +2,31 @@
 {% block title %}Member-to-Member Opportunities{% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="message-container">
+    {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+</div>
+<style>
+  .message-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.alert {
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+</style>
+{% endif %}
 <div class="opportunities-container">
     <h2>Opportunities from Fellow Members</h2>
 
