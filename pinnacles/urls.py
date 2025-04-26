@@ -17,6 +17,7 @@ urlpatterns = [
     path('members/', include('members_app.urls')),
     path('about_us/', include('about_app.urls')),
     path('jobs/', include('jobs.urls')),
+    path('scholarships/', include('Scholarships.urls')),
 
 ] 
 

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'auth_app',
     'donation_app',
     'jobs',
+    'Scholarships',
     'cloudinary',
     'cloudinary_storage',
 ]

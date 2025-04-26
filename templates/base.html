@@ -30,6 +30,7 @@
             <a href="{% url 'activities:activities' %}" class="nav-link">Activities</a>
             <a href="{% url 'about:about_us'%}" class="nav-link">About Us</a>
             <a href="{% url 'jobs:job_list' %}" class="nav-link">Jobs</a>
+            <a href="{% url 'scholarships:scholarship_list' %}" class="nav-link">Scholarships</a>
             <a href="{% url 'logout' %}" class="nav-link">Logout</a>
             <a href="{% url 'members:profile_edit' %}" class="nav-link">
               {% if current_user_profile.profile_picture %}

@@ -929,6 +929,33 @@ a:hover {
     background-color: #005fcc;
 }
 
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+    .job-list-container {
+        padding: 0 10px;
+        margin: 20px 10px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .job-card {
+        padding: 15px;
+    }
+
+    .scholarship-link {
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .view-link {
+        font-size: 0.95rem;
+    }
+}
+
 /* job details styles */
 .job-detail-container {
     max-width: 800px;
@@ -973,6 +1000,30 @@ a:hover {
 .job-detail-container a:hover {
     background-color: #007BFF;
 }
+@media (max-width: 600px) {
+    .job-detail-container {
+      margin: 20px 10px;
+      padding: 20px;
+    }
+  
+    .job-title {
+      font-size: 1.6rem;
+    }
+  
+    .job-meta {
+      font-size: 0.9rem;
+    }
+  
+    .job-description {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  
+    .job-detail-container a {
+      padding: 8px 16px;
+      font-size: 0.95rem;
+    }
+  }
 
 /* scholarship styles */
 .scholarship-container {
@@ -1014,6 +1065,31 @@ a:hover {
 .scholarship-card a:hover {
     background-color: #005fcc;
 }
+@media (max-width: 600px) {
+    .scholarship-container {
+      padding: 1rem;
+    }
+  
+    .scholarship-container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .scholarship-card {
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+    }
+  
+    .scholarship-card h3 {
+      font-size: 1.2rem;
+    }
+  
+    .scholarship-card a {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+  
 
 /* member to member styles */
 

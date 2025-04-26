@@ -3,7 +3,7 @@ from .forms import MemberOpportunityForm
 from .models import MemberOpportunity
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Job
-from .models import Scholarship
+# from .models import Scholarship
 from django.contrib import messages
 
 def job_list(request):
@@ -15,9 +15,9 @@ def job_detail(request, pk):
     return render(request, 'job_detail.html', {'job': job})
 
 
-def scholarship_list(request):
-    scholarships = Scholarship.objects.all()
-    return render(request, 'scholarship_list.html', {'scholarships': scholarships})
+# def scholarship_list(request):
+#     scholarships = Scholarship.objects.all()
+#     return render(request, 'scholarship_list.html', {'scholarships': scholarships})
 
 @login_required
 def submit_opportunity(request):
