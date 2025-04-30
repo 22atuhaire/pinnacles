@@ -12,7 +12,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('news:news_list')
+            return redirect('core_app:dashboard')
         else:
             messages.error(request, "Invalid username or password.")
     else:
