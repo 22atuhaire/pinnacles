@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% load static %}
+{% block content %}
+<div class="dashboard-wrapper">
+    <div class="header">
+        <div class="welcome-text">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <p>Together, We Rise</p>
+        </div>
+        <div class="header-illustration">
+            <img src="{% static 'image/dashboard-illustration.svg' %}" alt="Welcome Illustration" />
+        </div>
+    </div>
+
+    <div class="feature-cards">
+        <div class="feature-card">
+            <div class="icon job-icon"></div>
+            <h3>Job Opportunities</h3>
+            <p>Explore open positions available to alumni</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon scholarship-icon"></div>
+            <h3>Scholarships</h3>
+            <p>Discover the latest scholarship offers</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon support-icon"></div>
+            <h3>Member Support</h3>
+            <p>Submit an opportunity to assist others</p>
+        </div>
+        <div class="feature-card blank-card">
+            <!-- Leave space for future content or illustration -->
+        </div>
+    </div>
+
+    <div class="opportunity-section">
+        <div class="left">
+            <h2>Today's Opportunities</h2>
+            <ul>
+                {% for item in recent_opportunities %}
+                    <li><span class="opportunity-icon"></span>{{ item.title }} – {{ item.company }}</li>
+                {% empty %}
+                    <li>No recent opportunities</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="right">
+            <h1>97%</h1>
+            <p>of employers prefer alumni connections</p>
+        </div>
+    </div>
+</div>
+<style>
+    .dashboard-wrapper {
+        padding: 2rem;
+        max-width: 1100px;
+        margin: auto;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .welcome-text h1 {
+        font-size: 2rem;
+        color: #003366;
+        margin-bottom: 0.3rem;
+    }
+    
+    .welcome-text p {
+        color: #666;
+        font-size: 1.1rem;
+    }
+    
+    .header-illustration img {
+        max-width: 200px;
+        height: auto;
+    }
+    
+    .feature-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .feature-card {
+        background: #f9f9ff;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        text-align: center;
+        transition: transform 0.2s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .icon {
+        width: 40px;
+        height: 40px;
+        margin: auto;
+        margin-bottom: 1rem;
+        background-size: cover;
+    }
+    
+    .job-icon {
+        background-image: url('/static/icons/job.svg');
+    }
+    
+    .scholarship-icon {
+        background-image: url('/static/icons/scholarship.svg');
+    }
+    
+    .support-icon {
+        background-image: url('/static/icons/support.svg');
+    }
+    
+    .blank-card {
+        background: #e6f0ff;
+    }
+    
+    .opportunity-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 2rem;
+    }
+    
+    .opportunity-section .left {
+        flex: 1;
+    }
+    
+    .opportunity-section .left ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .opportunity-section .left li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .opportunity-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 0.5rem;
+        background-image: url('/static/icons/opportunity.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .opportunity-section .right {
+        text-align: center;
+        background-color: #f0f8ff;
+        padding: 1.5rem;
+        border-radius: 12px;
+        flex: 0 0 200px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    
+    .opportunity-section .right h1 {
+        font-size: 2.5rem;
+        color: #003366;
+        margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    
+        .opportunity-section {
+            flex-direction: column;
+        }
+    
+        .opportunity-section .right {
+            width: 100%;
+        }
+    }
+    </style>
+{% endblock %}
+
+

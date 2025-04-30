@@ -22,7 +22,7 @@ logs/
 *.out
 *.err
 
-# Ignore static and media files (optional)
+Ignore static and media files (optional)
 staticfiles/
 media/
 db.sqlite3
