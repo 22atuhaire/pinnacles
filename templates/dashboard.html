@@ -14,25 +14,35 @@
     </div>
 
     <div class="feature-cards">
-        <div class="feature-card">
-            <div class="icon job-icon"></div>
-            <h3>Job Opportunities</h3>
-            <p>Explore open positions available to alumni</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon scholarship-icon"></div>
-            <h3>Scholarships</h3>
-            <p>Discover the latest scholarship offers</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon support-icon"></div>
-            <h3>Member Support</h3>
-            <p>Submit an opportunity to assist others</p>
-        </div>
+        <a href="{% url 'jobs:job_list' %}" class="feature-card-link">
+            <div class="feature-card">
+                <div class="icon job-icon"></div>
+                <h3>Job Opportunities</h3>
+                <p>Explore open positions available to alumni</p>
+            </div>
+        </a>
+    
+        <a href="{% url 'scholarships:scholarship_list' %}" class="feature-card-link">
+            <div class="feature-card">
+                <div class="icon scholarship-icon"></div>
+                <h3>Scholarships</h3>
+                <p>Discover the latest scholarship offers</p>
+            </div>
+        </a>
+    
+        <a href="{% url 'jobs:submit_opportunity' %}" class="feature-card-link">
+            <div class="feature-card">
+                <div class="icon support-icon"></div>
+                <h3>Member Support</h3>
+                <p>Submit an opportunity to assist others</p>
+            </div>
+        </a>
+    
         <div class="feature-card blank-card">
             <!-- Leave space for future content or illustration -->
         </div>
     </div>
+    
 
     <div class="opportunity-section">
         <div class="left">
@@ -175,6 +185,11 @@
         color: #003366;
         margin-bottom: 0.5rem;
     }
+    .feature-card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    
     
     @media (max-width: 768px) {
         .header {
