@@ -97,11 +97,8 @@
         <h3 style="color: #444; margin-bottom: 15px;">Your Hand</h3>
         <div id="hand-container" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
             {% for card in current_hand %}
-            <div class="card" data-index="{{ forloop.counter0 }}" 
-                 style="padding: 30px 20px; background: white; border: 2px solid #333; border-radius: 8px; cursor: {% if is_my_turn %}pointer{% else %}not-allowed{% endif %}; min-width: 100px; text-align: center; transition: transform 0.2s;"
-                 onmouseover="if({{ is_my_turn|yesno:'true,false' }}) this.style.transform='translateY(-10px)'"
-                 onmouseout="this.style.transform='translateY(0)'"
-                 onclick="{% if is_my_turn %}playCard({{ forloop.counter0 }}){% endif %}">
+            <div class="card" data-index="{{ forloop.counter0 }}" data-my-turn="{{ is_my_turn|yesno:'true,false' }}"
+                 style="padding: 30px 20px; background: white; border: 2px solid #333; border-radius: 8px; cursor: {% if is_my_turn %}pointer{% else %}not-allowed{% endif %}; min-width: 100px; text-align: center; transition: transform 0.2s;">
                 <div style="font-size: 32px; font-weight: bold; color: {% if card.suit in 'hearts,diamonds' %}red{% else %}black{% endif %};">
                     {{ card.rank }}
                 </div>
@@ -218,6 +215,33 @@ function drawCard() {
         console.error('Error:', error);
     });
 }
+
+// Set up card event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const isMyTurn = card.dataset.myTurn === 'true';
+        const cardIndex = parseInt(card.dataset.index);
+        
+        // Hover effects
+        card.addEventListener('mouseover', function() {
+            if (isMyTurn) {
+                this.style.transform = 'translateY(-10px)';
+            }
+        });
+        
+        card.addEventListener('mouseout', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        
+        // Click handler
+        if (isMyTurn) {
+            card.addEventListener('click', function() {
+                playCard(cardIndex);
+            });
+        }
+    });
+});
 
 // Auto-refresh every 5 seconds to see opponent's moves
 {% if game.status == 'active' and not is_my_turn %}

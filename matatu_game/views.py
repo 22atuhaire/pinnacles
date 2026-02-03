@@ -43,7 +43,7 @@ def create_game(request):
             )
             messages.success(request, f"Game created! Waiting for opponent to join with ${stake} stake")
             return redirect('matatu_game:game_detail', game_id=game.id)
-        except (ValueError, Exception) as e:
+        except ValueError:
             messages.error(request, "Invalid stake amount")
             return redirect('matatu_game:lobby')
     
@@ -75,7 +75,7 @@ def join_game(request, game_id):
             game.initialize_game()
             messages.success(request, f"Joined game! Total pot: ${game.get_total_pot()}")
             return redirect('matatu_game:game_detail', game_id=game.id)
-        except (ValueError, Exception) as e:
+        except ValueError:
             messages.error(request, "Invalid stake amount")
             return redirect('matatu_game:lobby')
     
