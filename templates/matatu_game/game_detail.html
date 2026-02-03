@@ -54,7 +54,7 @@
                 <strong>Last Played Card:</strong>
                 {% if last_played %}
                     <div style="display: inline-block; padding: 20px 15px; background: white; border: 2px solid #333; border-radius: 8px; margin: 10px 0; min-width: 80px;">
-                        <div style="font-size: 24px; font-weight: bold; color: {% if last_played.suit in 'hearts,diamonds' %}red{% else %}black{% endif %};">
+                        <div style="font-size: 24px; font-weight: bold; color: {% if last_played.suit == 'hearts' or last_played.suit == 'diamonds' %}red{% else %}black{% endif %};">
                             {{ last_played.rank }}
                         </div>
                         <div style="font-size: 18px;">
@@ -99,7 +99,7 @@
             {% for card in current_hand %}
             <div class="card" data-index="{{ forloop.counter0 }}" data-my-turn="{{ is_my_turn|yesno:'true,false' }}"
                  style="padding: 30px 20px; background: white; border: 2px solid #333; border-radius: 8px; cursor: {% if is_my_turn %}pointer{% else %}not-allowed{% endif %}; min-width: 100px; text-align: center; transition: transform 0.2s;">
-                <div style="font-size: 32px; font-weight: bold; color: {% if card.suit in 'hearts,diamonds' %}red{% else %}black{% endif %};">
+                <div style="font-size: 32px; font-weight: bold; color: {% if card.suit == 'hearts' or card.suit == 'diamonds' %}red{% else %}black{% endif %};">
                     {{ card.rank }}
                 </div>
                 <div style="font-size: 24px; margin-top: 10px;">
