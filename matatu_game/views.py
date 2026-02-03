@@ -135,48 +135,55 @@ def play_card(request, game_id):
     
     try:
         data = json.loads(request.body)
-        card_index = data.get('card_index')
-        
-        # Determine which player
-        is_player1 = request.user == game.player1
-        hand_key = 'player1_hand' if is_player1 else 'player2_hand'
-        
-        # Get current hand
-        hand = game.game_state.get(hand_key, [])
-        
-        if card_index < 0 or card_index >= len(hand):
-            return JsonResponse({'error': 'Invalid card'}, status=400)
-        
-        # Play the card
-        played_card = hand.pop(card_index)
-        game.game_state['discard_pile'].append(played_card)
-        game.game_state['last_played'] = played_card
-        game.game_state[hand_key] = hand
-        
-        # Check if player won (no cards left)
-        if len(hand) == 0:
-            game.status = 'finished'
-            game.winner = request.user
-            game.save()
-            return JsonResponse({
-                'success': True,
-                'game_over': True,
-                'winner': request.user.username,
-                'winnings': float(game.get_total_pot())
-            })
-        
-        # Switch turns
-        game.current_turn = game.player2 if is_player1 else game.player1
+    except (json.JSONDecodeError, ValueError) as e:
+        return JsonResponse({'error': 'Invalid request data'}, status=400)
+    
+    card_index = data.get('card_index')
+    if card_index is None:
+        return JsonResponse({'error': 'card_index is required'}, status=400)
+    
+    try:
+        card_index = int(card_index)
+    except (ValueError, TypeError):
+        return JsonResponse({'error': 'card_index must be an integer'}, status=400)
+    
+    # Determine which player
+    is_player1 = request.user == game.player1
+    hand_key = 'player1_hand' if is_player1 else 'player2_hand'
+    
+    # Get current hand
+    hand = game.game_state.get(hand_key, [])
+    
+    if card_index < 0 or card_index >= len(hand):
+        return JsonResponse({'error': 'Invalid card'}, status=400)
+    
+    # Play the card
+    played_card = hand.pop(card_index)
+    game.game_state['discard_pile'].append(played_card)
+    game.game_state['last_played'] = played_card
+    game.game_state[hand_key] = hand
+    
+    # Check if player won (no cards left)
+    if len(hand) == 0:
+        game.status = 'finished'
+        game.winner = request.user
         game.save()
-        
         return JsonResponse({
             'success': True,
-            'game_over': False,
-            'hand_count': len(hand)
+            'game_over': True,
+            'winner': request.user.username,
+            'winnings': float(game.get_total_pot())
         })
-        
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    
+    # Switch turns
+    game.current_turn = game.player2 if is_player1 else game.player1
+    game.save()
+    
+    return JsonResponse({
+        'success': True,
+        'game_over': False,
+        'hand_count': len(hand)
+    })
 
 @login_required
 def draw_card(request, game_id):
@@ -193,33 +200,29 @@ def draw_card(request, game_id):
     if game.status != 'active':
         return JsonResponse({'error': 'Game is not active'}, status=400)
     
-    try:
-        # Determine which player
-        is_player1 = request.user == game.player1
-        hand_key = 'player1_hand' if is_player1 else 'player2_hand'
-        
-        # Get draw pile
-        draw_pile = game.game_state.get('draw_pile', [])
-        
-        if len(draw_pile) == 0:
-            return JsonResponse({'error': 'No cards left to draw'}, status=400)
-        
-        # Draw a card
-        drawn_card = draw_pile.pop(0)
-        hand = game.game_state.get(hand_key, [])
-        hand.append(drawn_card)
-        
-        game.game_state[hand_key] = hand
-        game.game_state['draw_pile'] = draw_pile
-        
-        # Switch turns
-        game.current_turn = game.player2 if is_player1 else game.player1
-        game.save()
-        
-        return JsonResponse({
-            'success': True,
-            'hand_count': len(hand)
-        })
-        
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    # Determine which player
+    is_player1 = request.user == game.player1
+    hand_key = 'player1_hand' if is_player1 else 'player2_hand'
+    
+    # Get draw pile
+    draw_pile = game.game_state.get('draw_pile', [])
+    
+    if len(draw_pile) == 0:
+        return JsonResponse({'error': 'No cards left to draw'}, status=400)
+    
+    # Draw a card
+    drawn_card = draw_pile.pop(0)
+    hand = game.game_state.get(hand_key, [])
+    hand.append(drawn_card)
+    
+    game.game_state[hand_key] = hand
+    game.game_state['draw_pile'] = draw_pile
+    
+    # Switch turns
+    game.current_turn = game.player2 if is_player1 else game.player1
+    game.save()
+    
+    return JsonResponse({
+        'success': True,
+        'hand_count': len(hand)
+    })
