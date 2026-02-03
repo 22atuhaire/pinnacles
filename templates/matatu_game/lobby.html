@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 20px;">
+    <h1 style="color: #333; margin-bottom: 20px;">Matatu Card Game Lobby</h1>
+    
+    <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h2 style="color: #444; margin-bottom: 15px;">Create New Game</h2>
+        <form method="post" action="{% url 'matatu_game:create_game' %}" style="display: flex; gap: 10px; align-items: center;">
+            {% csrf_token %}
+            <label for="stake" style="font-weight: bold;">Stake Amount ($):</label>
+            <input type="number" name="stake" id="stake" min="0" step="0.01" value="10.00" required 
+                   style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 120px;">
+            <button type="submit" style="background: #007bff; color: white; padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer;">
+                Create Game
+            </button>
+        </form>
+    </div>
+
+    <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <h2 style="color: #444; margin-bottom: 15px;">Your Games</h2>
+        {% if my_games %}
+            <div style="display: grid; gap: 10px;">
+                {% for game in my_games %}
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 4px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>Game #{{ game.id }}</strong> - 
+                            <span style="color: {% if game.status == 'active' %}green{% elif game.status == 'waiting' %}orange{% else %}gray{% endif %};">
+                                {{ game.get_status_display }}
+                            </span>
+                            <br>
+                            <small>
+                                {{ game.player1.username }} (${{ game.player1_stake }}) 
+                                vs 
+                                {% if game.player2 %}
+                                    {{ game.player2.username }} (${{ game.player2_stake }})
+                                {% else %}
+                                    Waiting for opponent...
+                                {% endif %}
+                            </small>
+                            {% if game.status == 'finished' and game.winner %}
+                                <br>
+                                <strong style="color: green;">Winner: {{ game.winner.username }} - Won ${{ game.get_total_pot }}</strong>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {% if game.status == 'waiting' or game.status == 'active' %}
+                                <a href="{% url 'matatu_game:game_detail' game.id %}" 
+                                   style="background: #28a745; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; display: inline-block;">
+                                    {% if game.status == 'waiting' %}View{% else %}Play{% endif %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="color: #666;">You don't have any active games.</p>
+        {% endif %}
+    </div>
+
+    <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #444; margin-bottom: 15px;">Available Games</h2>
+        {% if waiting_games %}
+            <div style="display: grid; gap: 10px;">
+                {% for game in waiting_games %}
+                <div style="border: 1px solid #ddd; padding: 15px; border-radius: 4px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>Game #{{ game.id }}</strong>
+                            <br>
+                            <small>
+                                Created by {{ game.player1.username }} - Stake: ${{ game.player1_stake }}
+                            </small>
+                        </div>
+                        <div>
+                            <a href="{% url 'matatu_game:join_game' game.id %}" 
+                               style="background: #007bff; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; display: inline-block;">
+                                Join
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="color: #666;">No games waiting for players. Create a new game!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'donation_app',
     'jobs',
     'Scholarships',
+    'matatu_game',
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -86,14 +87,19 @@ WSGI_APPLICATION = 'pinnacles.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Default to SQLite for local development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Override with PostgreSQL if DATABASE_URL environment variable is set
+# This allows for production deployment while maintaining local development flexibility
 database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+if database_url:
+    DATABASES["default"] = dj_database_url.parse(database_url)
 
 #postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database
 # Password validation

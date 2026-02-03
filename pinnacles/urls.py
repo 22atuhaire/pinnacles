@@ -18,6 +18,7 @@ urlpatterns = [
     path('about_us/', include('about_app.urls')),
     path('jobs/', include('jobs.urls')),
     path('scholarships/', include('Scholarships.urls')),
+    path('matatu/', include('matatu_game.urls')),
 
 ] 
 
