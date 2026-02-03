@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'donation_app',
     'jobs',
     'Scholarships',
+    'matatu_game',
     'cloudinary',
     'cloudinary_storage',
 ]
@@ -93,7 +94,8 @@ DATABASES = {
     }
 }
 database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+if database_url:
+    DATABASES["default"] = dj_database_url.parse(database_url)
 
 #postgresql://kosa_database_user:Bbz0yTlVeTFX4sngkfqVKhLA1wWUkidS@dpg-cvqjaqngi27c73emoihg-a.oregon-postgres.render.com/kosa_database
 # Password validation
