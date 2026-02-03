@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
+from django.db import models
 from .models import MatatuGame
 from decimal import Decimal
 import json
@@ -222,6 +223,3 @@ def draw_card(request, game_id):
         
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
-
-# Import models.Q for filtering
-from django.db import models
