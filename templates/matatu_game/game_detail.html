@@ -249,7 +249,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Auto-refresh every 5 seconds to see opponent's moves
+// Auto-refresh for game state updates
+// Note: This is a simple polling solution for MVP. For production,
+// consider implementing WebSockets or AJAX polling for better UX.
 {% if game.status == 'active' and not is_my_turn %}
 setInterval(() => {
     location.reload();

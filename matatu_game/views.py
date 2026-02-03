@@ -135,7 +135,7 @@ def play_card(request, game_id):
     
     try:
         data = json.loads(request.body)
-    except (json.JSONDecodeError, ValueError) as e:
+    except (json.JSONDecodeError, ValueError):
         return JsonResponse({'error': 'Invalid request data'}, status=400)
     
     card_index = data.get('card_index')
