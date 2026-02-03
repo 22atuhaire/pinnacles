@@ -45,7 +45,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            {% if game.status in 'waiting,active' %}
+                            {% if game.status == 'waiting' or game.status == 'active' %}
                                 <a href="{% url 'matatu_game:game_detail' game.id %}" 
                                    style="background: #28a745; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; display: inline-block;">
                                     {% if game.status == 'waiting' %}View{% else %}Play{% endif %}
